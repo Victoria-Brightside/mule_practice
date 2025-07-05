@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	
+	<flow name="propertiesfileFlow" doc:id="8e3ce478-03d6-475f-b158-77f5dd884787" >
+		<http:listener doc:name="Listener" doc:id="d910252b-1cc5-4d3e-91c4-d5642d148cce" config-ref="HTTP_Listener_config" path="/propertiesfile"/>
+		<set-payload value="Éste es nuestro programa del tutorial de elementos globales y archivos de propiedades" doc:name="Set Payload" doc:id="de2ae168-8bf5-433c-b0af-628dfca0b6d4" />
+	</flow>
+</mule>
