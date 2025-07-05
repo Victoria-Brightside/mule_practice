@@ -4,11 +4,11 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="72d704f4-94b6-4e39-a2a9-b39bca9e994d" >
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="824f508f-f892-478d-8183-9c421ac39ab0" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<flow name="alohamuleFlow" doc:id="cd2cb195-80ae-4b73-8b02-814276f00002" >
-		<http:listener doc:name="Listener" doc:id="5ac080b5-cba5-4cfc-9542-c1db45e2a053" config-ref="HTTP_Listener_config" path="/alohamule"/>
-		<set-payload value="Aloha Mule!" doc:name="Set Payload" doc:id="4172539f-489d-4cef-a156-951e3c81f344" />
+	<flow name="alohamuleFlow" doc:id="f2fea300-606f-4252-996c-9b24ceec8485" >
+		<http:listener doc:name="Listener" doc:id="52b71f15-e56e-4191-bad0-1135e04aec89" config-ref="HTTP_Listener_config" path="/alohamule"/>
+		<set-payload value="Aloha Mule!" doc:name="Set Payload" doc:id="da679dab-3c91-4802-acee-f00f6be8e42d" />
 	</flow>
 </mule>
