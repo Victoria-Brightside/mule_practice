@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+<mule xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
 	xmlns:db="http://www.mulesoft.org/schema/mule/db"
-	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
-	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd 
 http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
 	<http:listener-config name="sps-database-api-httpListenerConfig">
         <http:listener-connection host="${http.listener.host}" port="${http.listener.port}" />
     </http:listener-config>
     <apikit:config name="sps-database-api-config" api="resource::effc37cd-3936-44f0-b906-51aea6924046:sps-database-api:1.0.0:raml:zip:sps-database-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="01bbb2b3-1532-4fad-b47a-6652319e9ce0" >
-		<db:my-sql-connection host="${db.host}" port="${db.port}" user="${secure::sps.password}" password="${secure::sps.password}" database="${db.database}" />
+		<db:my-sql-connection host="${db.host}" port="${db.port}" user="mule" password="mule" database="${db.database}" />
 	</db:config>
-	<configuration-properties doc:name="Configuration properties" doc:id="61efd9fe-39a6-45ff-958a-a4486bbcd029" file="${env}.properties" />
 	<global-property doc:name="Global Property" doc:id="2bcd789c-01e3-436f-8a70-846c045c3f37" name="env" value="local" />
-	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="f229c740-3002-4b3e-b9e9-e32c55207975" file="${env}.secure.properties" key="${secure.key}" >
-		<secure-properties:encrypt algorithm="Blowfish" />
-	</secure-properties:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="85bdf4bf-68a4-4dac-8ea7-b2d941dad4fe" file="${env}.properties" />
+	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="7e8eeead-c2c1-4548-98c9-47fdad7e24e9" flowRef="sps-database-api-main" />
 	
 </mule>

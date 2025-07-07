@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	
 	<flow name="securepropertiesFlow" doc:id="59031665-0ac9-49f5-8c03-712f1a770e6c" >
 		<http:listener doc:name="Listener" doc:id="13eb5455-91cc-4196-8dd4-855d25349957" config-ref="HTTP_Listener_config" path="/secure"/>
-		<set-payload value="Aplicación para tutorial secure properties" doc:name="Set Payload" doc:id="8bf35f68-ffb2-470e-82bf-6a4c56e241a6" />
+		<set-payload value="Aplicación para tutorial client ID enforcement policy" doc:name="Set Payload" doc:id="8bf35f68-ffb2-470e-82bf-6a4c56e241a6" />
 		<logger level="INFO" doc:name="Logger" doc:id="458fc9f3-b82e-4904-ad91-ba5128147f63" message='#[output application/java&#10;---&#10;"Username: " ++ Mule::p("secure::example.username")&#10;++ " - " ++&#10;"Password: " ++ Mule::p("secure::example.password")]'/>
 	</flow>
 </mule>
