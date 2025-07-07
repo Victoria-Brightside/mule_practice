@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="053ced7d-6532-4318-b23c-dc75e339d345" >
+		<db:my-sql-connection host="localhost" port="3306" user="mule" password="mule" database="training" />
+	</db:config>
+	<flow name="getCustomers" doc:id="fe371959-6468-4460-b22f-83f1825ef067" >
+		<db:select doc:name="Get Customers" doc:id="6fe8c1d6-d378-4c24-8380-dbe996678fac" config-ref="Database_Config">
+			<db:sql ><![CDATA[SELECT * FROM customers]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="ea43c90e-f958-4fab-9274-7b017e8ef58e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
